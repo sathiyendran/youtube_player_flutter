@@ -6,6 +6,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../enums/thumbnail_quality.dart';
 import '../utils/errors.dart';
@@ -349,8 +350,8 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
             AnimatedOpacity(
               opacity: controller.value.hasPlayed ? 0 : 1,
               duration: Duration(milliseconds: 300),
-              child: Image.network(
-                widget.thumbnailUrl ??
+              child: CachedNetworkImage(
+               imageUrl: widget.thumbnailUrl ??
                     YoutubePlayer.getThumbnail(
                       videoId: controller.metadata.videoId.isEmpty
                           ? controller.initialVideoId
